@@ -3,8 +3,8 @@
 	helper = /mnt/c/Program\\ Files/Git/mingw64/libexec/git-core/git-credential-manager-core.exe
 
 	# use linux credential manager
-	# credentialStore = secretservice
 	# helper = /usr/local/share/gcm-core/git-credential-manager-core
+	# credentialStore = secretservice
 [credential "https://dev.azure.com"]
 	useHttpPath = true
 [user]
