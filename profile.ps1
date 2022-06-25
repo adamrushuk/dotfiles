@@ -1,4 +1,4 @@
-#requires -module posh-git, oh-my-posh
+# requires -module posh-git
 
 #region Custom prompt config
 <#
@@ -18,7 +18,8 @@ Blog post:
 https://www.hanselman.com/blog/taking-your-powershell-prompt-to-the-next-level-with-windows-terminal-and-oh-my-posh-3
 # https://ohmyposh.dev/docs/upgrading/
 #>
-Set-PoshPrompt -Theme  ~/.go-my-posh.json
+# Set-PoshPrompt -Theme  ~/.go-my-posh.json
+oh-my-posh init pwsh --config ~/.go-my-posh.json | Invoke-Expression
 #endregion Custom prompt config
 
 
