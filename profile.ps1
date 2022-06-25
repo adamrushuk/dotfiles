@@ -1,5 +1,3 @@
-# requires -module posh-git
-
 #region Custom prompt config
 <#
 # Install modules
@@ -19,6 +17,11 @@ https://www.hanselman.com/blog/taking-your-powershell-prompt-to-the-next-level-w
 # https://ohmyposh.dev/docs/upgrading/
 #>
 # Set-PoshPrompt -Theme  ~/.go-my-posh.json
+
+# add local bin to path
+$env:PATH = "~/.local/bin:$env:PATH"
+
+# show prompt
 oh-my-posh init pwsh --config ~/.go-my-posh.json | Invoke-Expression
 #endregion Custom prompt config
 
