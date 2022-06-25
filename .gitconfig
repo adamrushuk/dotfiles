@@ -32,7 +32,3 @@
 	amend = "!git add -A && git commit --amend --no-edit"
 	undo = "!git reset --soft HEAD^"
 	unstage = "!git reset HEAD"
-[credential "https://gitlab.tooling.iace.mod.gov.uk"]
-	provider = generic
-[credential "https://gitlab.tooling.dev.iace.mod.gov.uk"]
-	provider = generic
