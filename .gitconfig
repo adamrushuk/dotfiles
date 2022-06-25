@@ -1,10 +1,10 @@
 [credential]
 	# use windows credential manager
-	# helper = /mnt/c/Program\\ Files/Git/mingw64/libexec/git-core/git-credential-manager-core.exe
+	helper = /mnt/c/Program\\ Files/Git/mingw64/libexec/git-core/git-credential-manager-core.exe
 
 	# use linux credential manager
-	credentialStore = secretservice
-	helper = /usr/local/share/gcm-core/git-credential-manager-core
+	# credentialStore = secretservice
+	# helper = /usr/local/share/gcm-core/git-credential-manager-core
 [credential "https://dev.azure.com"]
 	useHttpPath = true
 [user]
