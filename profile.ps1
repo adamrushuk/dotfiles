@@ -1,8 +1,8 @@
 #region Custom prompt config
 <#
 # Install modules
-Install-Module -Name posh-git, oh-my-posh, PSReadLine -Verbose
-Get-Module -Name posh-git, oh-my-posh, PSReadLine -ListAvailable
+Install-Module -Name posh-git, PSReadLine -Verbose
+Get-Module -Name posh-git, PSReadLine -ListAvailable
 
 # Download "Caskaydia Cove Nerd Font" from:
 https://www.nerdfonts.com/font-downloads
