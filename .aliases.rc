@@ -18,6 +18,7 @@ alias tf='terraform'
 alias g='git'
 alias timesync='sudo hwclock -s'
 alias ddu='du -sh * | sort -hr | head -20'
+alias aup='sudo apt update && sudo apt upgrade'
 
 # Azure CLI
 alias azas='az account show -o table'
