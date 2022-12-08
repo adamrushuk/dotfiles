@@ -42,5 +42,5 @@ alias .5='cd ../../../../..'
 # functions
 bats() {
     echo "Running 'bats()' wrapper defined in .aliases.rc ..."
-    BATS_RUN_SKIPPED=true command bats *.bats
+    BATS_RUN_SKIPPED=true command bats *.bats "$@"
 }
