@@ -131,6 +131,7 @@ if [ -f "$HOME/.bashenv" ]; then source "$HOME/.bashenv"; fi
 # Auto complete
 if command -v kubectl > /dev/null; then source <(kubectl completion bash); fi
 if command -v az > /dev/null; then source /etc/bash_completion.d/azure-cli; fi
+if command -v glab > /dev/null; then source <(glab completion --shell bash); fi
 
 # Login banner thing
 if [ -f "$HOME/.banner.rc" ]; then source "$HOME/.banner.rc"; fi
