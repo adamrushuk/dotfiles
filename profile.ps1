@@ -5,7 +5,8 @@ Install-Module -Name posh-git, PSReadLine -Verbose
 Get-Module -Name posh-git, PSReadLine -ListAvailable
 
 # Download "Caskaydia Cove Nerd Font" from:
-https://www.nerdfonts.com/font-downloads
+- https://www.nerdfonts.com/font-downloads
+- https://github.com/microsoft/cascadia-code/releases
 
 # Change font settings in VSCode (only for terminal, as rendering issues for backticks)
 "editor.fontFamily": "'Cascadia Code PL', 'Consolas', 'Courier New', monospace",
