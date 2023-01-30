@@ -1,7 +1,7 @@
 [credential]
 	# use windows credential manager
 	# https://docs.microsoft.com/en-us/windows/wsl/tutorials/wsl-git#git-credential-manager-setup
-	helper = /mnt/c/Program\\ Files//Git/mingw64/bin/git-credential-manager-core.exe
+	helper = /mnt/c/Program\\ Files//Git/mingw64/bin/git-credential-manager.exe
 
 	# use linux credential manager
 	# helper = /usr/local/share/gcm-core/git-credential-manager-core
