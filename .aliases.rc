@@ -19,6 +19,7 @@ alias g='git'
 alias timesync='sudo hwclock -s'
 alias ddu='du -sh * | sort -hr | head -20'
 alias aup='sudo apt update && sudo apt upgrade'
+alias gl="git log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
 
 # Azure CLI
 alias azas='az account show -o table'
