@@ -54,7 +54,7 @@ Set-PSReadLineKeyHandler -Key UpArrow -Function HistorySearchBackward
 Set-PSReadLineKeyHandler -Key DownArrow -Function HistorySearchForward
 
 # add nicer tab completion
-Set-PSReadlineKeyHandler -Key Tab -Function MenuComplete
+Set-PSReadLineKeyHandler -Key Tab -Function MenuComplete
 #endregion PSReadLine
 
 
@@ -100,6 +100,7 @@ function Clear-DeletedBranches {
 }
 
 # Aliases
+Set-Alias -Name g -Value git
 Set-Alias -Name k -Value kubectl
-Set-Alias -Name tf -Value terraform
 Set-Alias -Name l -Value gci
+Set-Alias -Name tf -Value terraform
