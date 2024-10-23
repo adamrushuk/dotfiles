@@ -19,7 +19,8 @@ alias g='git'
 alias timesync='sudo hwclock -s'
 alias ddu='du -sh * | sort -hr | head -20'
 alias aup='sudo apt update && sudo apt upgrade'
-alias gl='git log --pretty=format:"- %s" master..$(git rev-parse --abbrev-ref HEAD) | tee >(clip.exe)'
+alias gl='git log --pretty=format:"- %s" master..$(git rev-parse --abbrev-ref HEAD) | sed -E '\''s/([0-9]+\.[0-9]+\.[0-9]+)/`\1`/g; s/\bupdate\b/updated/Ig; s/\bchange\b/changed/Ig; s/\bdelete\b/deleted/Ig; s/\bfix\b/fixed/Ig'\'' | tee >(clip.exe)'
+alias glc='git log --pretty=format:"- %s" master..$(git rev-parse --abbrev-ref HEAD) | tee >(clip.exe)'
 alias gll="git log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
 
 # Azure CLI
