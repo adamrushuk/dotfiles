@@ -12,14 +12,14 @@ alias ksc='kubectl config use-context'
 # Misc
 # clear deleted branches (git prune)
 alias cdb="git checkout master && git pull && git fetch --prune && git branch --merged master | egrep -v '(^\*|master|develop)' | xargs git branch -D 2>/dev/null || echo 'No branches found to delete.'; git branch -a"
-alias wsl-ip="ip addr show eth0 | grep \"inet 1\" | awk '{print \$2}' | cut -d/ -f1"
+alias wsl-ip="ip addr show eth0 | grep "inet " | awk '{print $2}' | cut -d/ -f1"
 alias py3='python3'
 alias tf='terraform'
 alias g='git'
 alias timesync='sudo hwclock -s'
 alias ddu='du -sh * | sort -hr | head -20'
 alias aup='sudo apt update && sudo apt upgrade'
-alias gl='git log --pretty=format:"- %s" master..$(git rev-parse --abbrev-ref HEAD) | sed -E '\''s/([0-9]+\.[0-9]+\.[0-9]+)/`\1`/g; s/\bupdate\b/updated/Ig; s/\bchange\b/changed/Ig; s/\bdelete\b/deleted/Ig; s/\bfix\b/fixed/Ig'\'' | tee >(clip.exe)'
+alias gl='git log --pretty=format:"- %s" master..$(git rev-parse --abbrev-ref HEAD) | sed -E '\''s/([0-9]+\.[0-9]+\.[0-9]+)/`\1`/g; s/\badd\b/added/Ig; s/\bupdate\b/updated/Ig; s/\bchange\b/changed/Ig; s/\bdelete\b/deleted/Ig; s/\bfix\b/fixed/Ig'\'' | tee >(clip.exe)'
 alias glc='git log --pretty=format:"- %s" master..$(git rev-parse --abbrev-ref HEAD) | tee >(clip.exe)'
 alias gll="git log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
 
