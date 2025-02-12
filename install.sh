@@ -38,12 +38,28 @@ chmod +x ~/.local/bin/oh-my-posh
 #
 # Create symlinks for all dotfiles and bin directory
 #
-echo -e "\n\e[38;5;45m»»» Creating dotfile symlinks \e[0m"
-for f in .gitconfig .profile .bashrc .aliases.rc .banner.rc bin .go-my-posh.json
-do
-  echo $f
-  rm -rf "${HOME:?}/$f"
-  ln -s "$HOME/dotfiles/$f" "$HOME/$f"
+dotfiles_dir="$HOME/dotfiles"
+
+for f in .gitconfig .profile .bashrc .aliases.rc .banner.rc bin .go-my-posh.json; do
+  target="$HOME/$f"
+  source="$dotfiles_dir/$f"
+
+  echo "Processing: $f"
+
+  # Ensure source file exists
+  if [ ! -e "$source" ]; then
+    echo -e "❌ Source not found: $source"
+    continue
+  fi
+
+  # Remove existing file/symlink if present
+  if [ -e "$target" ] || [ -L "$target" ]; then
+    rm -f "$target" && echo "  🔄 Removed existing $target" || { echo "❌ Failed to remove $target"; continue; }
+  fi
+
+  # Create symlink
+  ln -s "$source" "$target" && echo "  ✅ Symlink created: $target → $source" || echo "❌ Failed to create symlink: $target"
+
 done
 
 # env
