@@ -57,7 +57,7 @@
 		"remisa.shellman",
 		// "rogalmic.bash-debug",
 		// "streetsidesoftware.code-spell-checker",
-		// "sztheory.vscode-packer-powertools",
+		"sztheory.vscode-packer-powertools",
 		"tamasfe.even-better-toml",
 		"timonwong.shellcheck",
 		"tyriar.shell-launcher",
