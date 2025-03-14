@@ -17,7 +17,6 @@ Blog post:
 https://www.hanselman.com/blog/taking-your-powershell-prompt-to-the-next-level-with-windows-terminal-and-oh-my-posh-3
 # https://ohmyposh.dev/docs/upgrading/
 #>
-# Set-PoshPrompt -Theme  ~/.go-my-posh.json
 
 # add local bin to path
 $env:PATH = "~/.local/bin:$env:PATH"
@@ -97,6 +96,56 @@ function Clear-DeletedBranches {
 
     Write-Host "`nCurrent branches..." -ForegroundColor Green
     git branch -a
+}
+
+# Git log functions
+function Get-GitLogCurrentBranch {
+    [CmdletBinding()]
+    [Alias("glc")]
+
+    $currentBranch = git rev-parse --abbrev-ref HEAD
+    $output = git log --pretty=format:"- %s" master..$currentBranch
+    $output | Out-String | Set-Clipboard
+    $output
+    Write-Host "Commit messages copied to clipboard" -ForegroundColor Green
+}
+
+function Get-GitLogPretty {
+    [CmdletBinding()]
+    [Alias("gll")]
+
+    $gitCommand = "git log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
+    Invoke-Expression $gitCommand
+}
+
+function Get-GitLogFormattedCurrentBranch {
+    [CmdletBinding()]
+    [Alias("glr")]
+
+    $currentBranch = git rev-parse --abbrev-ref HEAD
+    $output = git log --pretty=format:"- %s" master..$currentBranch
+
+    # Apply regex replacements (equivalent to the sed commands)
+    $formattedOutput = $output | ForEach-Object {
+        $line = $_
+        # Replace version numbers with backtick-wrapped version numbers
+        $line = [regex]::Replace($line, '([0-9]+\.[0-9]+\.[0-9]+)', '`$1`')
+
+        # Convert verbs to past tense
+        $line = [regex]::Replace($line, '\badd\b', 'added', [System.Text.RegularExpressions.RegexOptions]::IgnoreCase)
+        $line = [regex]::Replace($line, '\bupdate\b', 'updated', [System.Text.RegularExpressions.RegexOptions]::IgnoreCase)
+        $line = [regex]::Replace($line, '\bbump\b', 'bumped', [System.Text.RegularExpressions.RegexOptions]::IgnoreCase)
+        $line = [regex]::Replace($line, '\bchange\b', 'changed', [System.Text.RegularExpressions.RegexOptions]::IgnoreCase)
+        $line = [regex]::Replace($line, '\bdelete\b', 'deleted', [System.Text.RegularExpressions.RegexOptions]::IgnoreCase)
+        $line = [regex]::Replace($line, '\bfix\b', 'fixed', [System.Text.RegularExpressions.RegexOptions]::IgnoreCase)
+
+        $line
+    }
+
+    # Output to console and copy to clipboard
+    $formattedOutput | Out-String | Set-Clipboard
+    $formattedOutput
+    Write-Host "Formatted commit messages copied to clipboard" -ForegroundColor Green
 }
 
 # Aliases
