@@ -102,9 +102,16 @@ function Clear-DeletedBranches {
 function Get-GitLogCurrentBranch {
     [CmdletBinding()]
     [Alias("glc")]
+    param(
+        [Parameter(Mandatory = $false)]
+        [string]
+        $Branch = "master"
+    )
 
     $currentBranch = git rev-parse --abbrev-ref HEAD
-    $output = git log --pretty=format:"- %s" master..$currentBranch
+    $gitCommand = "git log --pretty=format:'- %s' '{0}..{1}'" -f $Branch, $currentBranch
+    Write-Host "Executing command: $gitCommand" -ForegroundColor Yellow
+    $output = Invoke-Expression $gitCommand
     $output | Out-String | Set-Clipboard
     $output
     Write-Host "Commit messages copied to clipboard" -ForegroundColor Green
@@ -113,6 +120,7 @@ function Get-GitLogCurrentBranch {
 function Get-GitLogPretty {
     [CmdletBinding()]
     [Alias("gll")]
+    param()
 
     $gitCommand = "git log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
     Invoke-Expression $gitCommand
@@ -121,9 +129,16 @@ function Get-GitLogPretty {
 function Get-GitLogFormattedCurrentBranch {
     [CmdletBinding()]
     [Alias("glr")]
+    param(
+        [Parameter(Mandatory = $false)]
+        [string]
+        $Branch = "master"
+    )
 
     $currentBranch = git rev-parse --abbrev-ref HEAD
-    $output = git log --pretty=format:"- %s" master..$currentBranch
+    $gitCommand = "git log --pretty=format:'- %s' '{0}..{1}'" -f $Branch, $currentBranch
+    Write-Host "Executing command: $gitCommand" -ForegroundColor Yellow
+    $output = Invoke-Expression $gitCommand
 
     # Apply regex replacements (equivalent to the sed commands)
     $formattedOutput = $output | ForEach-Object {
