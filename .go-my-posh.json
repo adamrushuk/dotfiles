@@ -10,7 +10,7 @@
           "properties": {
             "cache_duration": "none"
           },
-          "template": " \ufd31 {{ .Context }}{{ if .Namespace }} :: {{ .Namespace }}{{ end }} ",
+          "template": " \u2388 {{ .Context }}{{ if .Namespace }} :: {{ .Namespace }}{{ end }} ",
           "foreground": "#2E2E2E",
           "powerline_symbol": "\ue0b0",
           "type": "kubectl",
@@ -23,7 +23,7 @@
             "display_name": true,
             "info_separator": " @ "
           },
-          "template": " \ufd03 {{ .Name }} ",
+          "template": " \uebd8 {{ .Name }} ",
           "foreground": "#2E2E2E",
           "powerline_symbol": "\ue0b0",
           "type": "az",
@@ -87,7 +87,7 @@
           },
           "template": " \ue20f{{ if gt .Code 0 }}\uf00d {{ .Meaning }}{{ else }}\uf42e{{ end }} ",
           "foreground": "#BC414C",
-          "type": "exit",
+          "type": "status",
           "style": "plain"
         }
       ],
