@@ -144,7 +144,7 @@ function Get-GitLogFormattedCurrentBranch {
     $formattedOutput = $output | ForEach-Object {
         $line = $_
         # Replace version numbers with backtick-wrapped version numbers
-        $line = [regex]::Replace($line, '([0-9]+\.[0-9]+\.[0-9]+)', '`$1`')
+        $line = [regex]::Replace($line, '(v?[0-9]+\.[0-9]+\.[0-9]+)', '`$1`')
 
         # Convert verbs to past tense
         $line = [regex]::Replace($line, '\badd\b', 'added', [System.Text.RegularExpressions.RegexOptions]::IgnoreCase)
