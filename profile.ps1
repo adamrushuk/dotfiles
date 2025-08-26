@@ -157,9 +157,10 @@ function Get-GitLogFormattedCurrentBranch {
         $line
     }
 
-    # Output to console and copy to clipboard
-    $formattedOutput | Out-String | Set-Clipboard
-    $formattedOutput
+    # Reverse the output order and output to console and copy to clipboard
+    $reversedOutput = $formattedOutput | Sort-Object { [array]::IndexOf($formattedOutput, $_) } -Descending
+    $reversedOutput | Out-String | Set-Clipboard
+    $reversedOutput
     Write-Host "Formatted commit messages copied to clipboard" -ForegroundColor Green
 }
 
