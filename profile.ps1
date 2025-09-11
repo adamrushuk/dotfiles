@@ -60,14 +60,14 @@ Set-PSReadLineKeyHandler -Key Tab -Function MenuComplete
 # Source: https://gist.github.com/GABeech/98df2f95fb3a79cd2ccaa80a439aa975
 function Clear-DeletedBranches {
     [CmdletBinding(SupportsShouldProcess = $true, ConfirmImpact = 'High')]
-    [Alias("cdb")]
+    [Alias('cdb')]
     param(
         [Parameter(Mandatory = $false)]
         [string]
         $GitDir = $PWD
     )
 
-    $defaultBranch = ((git symbolic-ref --short refs/remotes/origin/HEAD) -split "/")[1]
+    $defaultBranch = ((git symbolic-ref --short refs/remotes/origin/HEAD) -split '/')[1]
     Write-Host "Switching to branch [$defaultBranch]..." -ForegroundColor Yellow
     git checkout $defaultBranch
 
@@ -75,10 +75,10 @@ function Clear-DeletedBranches {
 
     $branchesToPrune = git remote prune origin --dry-run
     if ($branchesToPrune) {
-        Write-Host "Branches to Be Pruned..." -ForegroundColor Green
+        Write-Host 'Branches to Be Pruned...' -ForegroundColor Green
         Write-Host $branchesToPrune -ForegroundColor Red
 
-        if ($PSCmdlet.ShouldProcess("Remove Local Branches?")) {
+        if ($PSCmdlet.ShouldProcess('Remove Local Branches?')) {
             git remote prune origin
             $branchesAfter = git branch -a
             $removed = Compare-Object -ReferenceObject $branchesBefore -DifferenceObject $branchesAfter
@@ -88,7 +88,7 @@ function Clear-DeletedBranches {
             }
         }
     } else {
-        Write-Host "Nothing To prune" -ForegroundColor Green
+        Write-Host 'Nothing To prune' -ForegroundColor Green
     }
 
     Write-Host "`nPulling changes from default branch..." -ForegroundColor Green
@@ -101,11 +101,11 @@ function Clear-DeletedBranches {
 # Git log functions
 function Get-GitLogCurrentBranch {
     [CmdletBinding()]
-    [Alias("glc")]
+    [Alias('glc')]
     param(
         [Parameter(Mandatory = $false)]
         [string]
-        $Branch = "master"
+        $Branch = 'master'
     )
 
     $currentBranch = git rev-parse --abbrev-ref HEAD
@@ -114,12 +114,12 @@ function Get-GitLogCurrentBranch {
     $output = Invoke-Expression $gitCommand
     $output | Out-String | Set-Clipboard
     $output
-    Write-Host "Commit messages copied to clipboard" -ForegroundColor Green
+    Write-Host 'Commit messages copied to clipboard' -ForegroundColor Green
 }
 
 function Get-GitLogPretty {
     [CmdletBinding()]
-    [Alias("gll")]
+    [Alias('gll')]
     param()
 
     $gitCommand = "git log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
@@ -128,11 +128,11 @@ function Get-GitLogPretty {
 
 function Get-GitLogFormattedCurrentBranch {
     [CmdletBinding()]
-    [Alias("glr")]
+    [Alias('glr')]
     param(
         [Parameter(Mandatory = $false)]
         [string]
-        $Branch = "master"
+        $Branch = 'master'
     )
 
     $currentBranch = git rev-parse --abbrev-ref HEAD
@@ -161,8 +161,43 @@ function Get-GitLogFormattedCurrentBranch {
     $reversedOutput = $formattedOutput | Sort-Object { [array]::IndexOf($formattedOutput, $_) } -Descending
     $reversedOutput | Out-String | Set-Clipboard
     $reversedOutput
-    Write-Host "Formatted commit messages copied to clipboard" -ForegroundColor Green
+    Write-Host 'Formatted commit messages copied to clipboard' -ForegroundColor Green
 }
+
+<# Watch a command (like the bash command "watch", but worse!)
+watch 'kubectl get all --namespace elastic-system-test'
+watch 'kubectl get all --namespace akv2k8s'
+watch 'kubectl get all --namespace akv2k8s' -n 10
+#>
+function Watch-Command {
+    [CmdletBinding()]
+    [Alias('watch')]
+    param(
+        [Parameter(Mandatory = $true)]
+        [string]$Command,
+
+        [Parameter(Mandatory = $false)]
+        [Alias('n')]
+        [int]$Interval = 5
+    )
+
+    while ($true) {
+        Clear-Host
+        Write-Host "Every ${Interval}s: $Command" -ForegroundColor Yellow
+        Write-Host 'Press Ctrl+C to stop' -ForegroundColor Yellow
+        Write-Host ''
+
+        # Execute command and capture output immediately
+        try {
+            Invoke-Expression $Command 2>&1
+        } catch {
+            Write-Host "Error: $_" -ForegroundColor Red
+        }
+
+        Start-Sleep -Seconds $Interval
+    }
+}
+
 
 # Aliases
 Set-Alias -Name g -Value git
