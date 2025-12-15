@@ -198,6 +198,27 @@ function Watch-Command {
     }
 }
 
+# Git functions
+function Remove-GitBranch {
+    [CmdletBinding()]
+    [Alias('gbd')]
+    param(
+        [Parameter(Mandatory = $true)]
+        [string]$BranchName
+    )
+
+    git branch -D $BranchName
+}
+
+function Get-GitBranch {
+    [Alias('gb')]
+    param(
+        [Parameter(Mandatory = $false)]
+        [string]$Args = '-a'
+    )
+
+    git branch $Args
+}
 
 # Aliases
 Set-Alias -Name g -Value git
