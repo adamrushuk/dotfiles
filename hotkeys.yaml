@@ -1,0 +1,52 @@
+# Hotkeys
+# https://k9scli.io/topics/hotkeys/
+# path: C:\Users\<USERNAME>\AppData\Local\k9s\hotkeys.yaml
+# note: casing has to be specific
+hotKeys:
+  shift-1:
+    shortCut: Shift-1
+    command: ctx
+
+  F1:
+    shortCut: F1
+    command: namespace
+
+  F2:
+    shortCut: F2
+    command: node
+
+  F3:
+    shortCut: F3
+    command: deployments
+
+  F4:
+    shortCut: F4
+    command: pod
+
+  F5:
+    shortCut: F5
+    command: secret
+
+  F6:
+    shortCut: F6
+    command: crd
+
+  F7:
+    shortCut: F7
+    command: service
+
+  F8:
+    shortCut: F8
+    command: ingress
+
+  F9:
+    shortCut: F9
+    command: pvc
+
+  F10:
+    shortCut: F10
+    command: pv
+
+  F12:
+    shortCut: F12
+    command: event
