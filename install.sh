@@ -40,7 +40,7 @@ chmod +x ~/.local/bin/oh-my-posh
 #
 dotfiles_dir="$HOME/dotfiles"
 
-for f in .gitconfig .profile .bashrc .aliases.rc .banner.rc bin .go-my-posh.json; do
+for f in bin .aliases.rc .banner.rc .bashrc .gitconfig .go-my-posh.json .profile; do
   target="$HOME/$f"
   source="$dotfiles_dir/$f"
 
