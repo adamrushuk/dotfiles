@@ -1,12 +1,23 @@
 # dotfiles
 
-dotfiles repo - tested with ubuntu 22.04
+dotfiles repo - tested with `Ubuntu 24.04 LTS` on WSL.
 
-## Ubuntu 22.04 Installation
+## Ubuntu 24.04 Installation
 
-1. Open Microsoft Store.
-1. Search for `Ubuntu` and select `Ubuntu 22.04 LTS`.
-1. Click `Get` to download.
+1. Open PowerShell or Command Prompt as Administrator.
+1. Run the following commands to install `Ubuntu 24.04 LTS`:
+
+   ```powershell
+   # List installed WSL distributions
+   wsl --list
+   
+   # List available WSL distributions
+   wsl --list --online
+   
+    # Install Ubuntu 24.04 LTS
+   wsl --install -d Ubuntu-24.04
+   ```
+
 1. Follow the instructions to complete the initial setup.
 1. Run `sudo apt update && sudo apt upgrade`.
 
