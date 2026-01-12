@@ -2,7 +2,7 @@
 echo -e "\n\e[38;5;135m╭───────────────────────────────────────────╮"
 echo -e "│\e[38;5;220m    Dotfiles \e[38;5;135m  │"
 echo -e "╰───────────────────────────────────────────╯"
-echo -e "\e[38;5;33mAdam Rush     \e[38;5;40mv0.0.2     🚀  🎁  💥\n"
+echo -e "\e[38;5;33mAdam Rush     \e[38;5;40mv1.0.0     🚀  🎁  💥\n"
 echo -e "\e[38;5;214m»»» 🙉 This script will remove & replace many of your personal dotfiles"
 echo -e "\e[38;5;214m»»» 🙊 If you have anything in these files/folders, please back them up:"
 echo -e "\e[38;5;214m»»» 🙈   \e[38;5;227m.bashenv .gitconfig .profile .bashrc ~/bin/ ~/tools/"
@@ -62,6 +62,15 @@ for f in bin .aliases.rc .banner.rc .bashrc .gitconfig .go-my-posh.json .profile
   ln -s "$source" "$target" && echo "  ✅ Symlink created: $target → $source" || echo "❌ Failed to create symlink: $target"
 
 done
+
+# Prompt for Git user configuration
+echo -e "\n\e[38;5;45m»»» Configuring Git user info... \e[0m"
+echo "Enter your Git email:"
+read -r email
+git config --global user.email "$email"
+echo "Enter your Git name:"
+read -r name
+git config --global user.name "$name"
 
 # env
 rm "$HOME/.bashenv"

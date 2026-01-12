@@ -8,9 +8,6 @@
 	# credentialStore = secretservice
 [credential "https://dev.azure.com"]
 	useHttpPath = true
-[user]
-	email = adamrushuk@gmail.com
-	name = Adam Rush
 [push]
 	default = simple
 [pull]
@@ -19,17 +16,13 @@
 	editor = code --wait
 [init]
 	defaultBranch = main
-# [http]
-# 	cookiefile = /home/adamr/.gitcookies
 [alias]
 	c = "!git add -A && git commit -m "
 	new = "!git checkout -b"
 	k = "!git checkout "
 	b = "!git branch "
 	p = "!git push"
-	#origin $(git rev-parse --abbrev-ref HEAD)"
-	pf = "!git push --force"
-	#origin $(git rev-parse --abbrev-ref HEAD)"
+	pf = "!git push --force-with-lease"
 	amend = "!git add -A && git commit --amend --no-edit"
 	undo = "!git reset --soft HEAD^"
 	unstage = "!git reset HEAD"
