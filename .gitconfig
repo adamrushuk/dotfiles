@@ -26,3 +26,6 @@
 	amend = "!git add -A && git commit --amend --no-edit"
 	undo = "!git reset --soft HEAD^"
 	unstage = "!git reset HEAD"
+[user]
+	email = adamrushuk@gmail.com
+	name = Adam Rush
