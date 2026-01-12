@@ -14,8 +14,12 @@ dotfiles repo - tested with `Ubuntu 24.04 LTS` on WSL.
     # List available WSL distributions
     wsl --list --online
     
-     # Install Ubuntu 24.04 LTS
+     # Install Ubuntu 24.04 LTS and set as default
     wsl --install -d Ubuntu-24.04
+    wsl --set-default Ubuntu-24.04
+    
+    # [optional] Unregister or uninstall a Linux distribution
+    wsl --unregister Ubuntu-24.04
     ```
 
 1. Follow the instructions to complete the initial setup.
