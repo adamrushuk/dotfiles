@@ -32,6 +32,7 @@ fi
 # debug cmd: oh-my-posh debug
 echo -e "\n\e[38;5;45m»»» Installing oh-my-posh (custom prompt)... \e[0m"
 mkdir -p ~/.local/bin
+sudo apt-get install -y unzip
 curl -s https://ohmyposh.dev/install.sh | bash -s -- -d ~/.local/bin/
 chmod +x ~/.local/bin/oh-my-posh
 
