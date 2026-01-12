@@ -7,16 +7,16 @@ dotfiles repo - tested with `Ubuntu 24.04 LTS` on WSL.
 1. Open PowerShell or Command Prompt as Administrator.
 1. Run the following commands to install `Ubuntu 24.04 LTS`:
 
-   ```powershell
-   # List installed WSL distributions
-   wsl --list
-   
-   # List available WSL distributions
-   wsl --list --online
-   
-    # Install Ubuntu 24.04 LTS
-   wsl --install -d Ubuntu-24.04
-   ```
+    ```powershell
+    # List installed WSL distributions
+    wsl --list
+    
+    # List available WSL distributions
+    wsl --list --online
+    
+     # Install Ubuntu 24.04 LTS
+    wsl --install -d Ubuntu-24.04
+    ```
 
 1. Follow the instructions to complete the initial setup.
 1. Run `sudo apt update && sudo apt upgrade`.
