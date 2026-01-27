@@ -2,7 +2,7 @@
 echo -e "\n\e[38;5;135m╭───────────────────────────────────────────╮"
 echo -e "│\e[38;5;220m    Dotfiles \e[38;5;135m  │"
 echo -e "╰───────────────────────────────────────────╯"
-echo -e "\e[38;5;33mAdam Rush     \e[38;5;40mv0.0.2     🚀  🎁  💥\n"
+echo -e "\e[38;5;33mAdam Rush     \e[38;5;40mv1.0.0     🚀  🎁  💥\n"
 echo -e "\e[38;5;214m»»» 🙉 This script will remove & replace many of your personal dotfiles"
 echo -e "\e[38;5;214m»»» 🙊 If you have anything in these files/folders, please back them up:"
 echo -e "\e[38;5;214m»»» 🙈   \e[38;5;227m.bashenv .gitconfig .profile .bashrc ~/bin/ ~/tools/"
@@ -32,7 +32,8 @@ fi
 # debug cmd: oh-my-posh debug
 echo -e "\n\e[38;5;45m»»» Installing oh-my-posh (custom prompt)... \e[0m"
 mkdir -p ~/.local/bin
-wget -q https://github.com/JanDeDobbeleer/oh-my-posh3/releases/latest/download/posh-linux-amd64 -O ~/.local/bin/oh-my-posh
+sudo apt-get install -y unzip
+curl -s https://ohmyposh.dev/install.sh | bash -s -- -d ~/.local/bin/
 chmod +x ~/.local/bin/oh-my-posh
 
 #
@@ -40,7 +41,7 @@ chmod +x ~/.local/bin/oh-my-posh
 #
 dotfiles_dir="$HOME/dotfiles"
 
-for f in .gitconfig .profile .bashrc .aliases.rc .banner.rc bin .go-my-posh.json; do
+for f in bin .aliases.rc .banner.rc .bashrc .gitconfig .go-my-posh.json .profile; do
   target="$HOME/$f"
   source="$dotfiles_dir/$f"
 
@@ -63,12 +64,29 @@ for f in .gitconfig .profile .bashrc .aliases.rc .banner.rc bin .go-my-posh.json
 done
 
 # env
-rm "$HOME/.bashenv"
-ln -s "$HOME/dotfiles/.env.rc" "$HOME/.bashenv"
+if [ -L "$HOME/.bashenv" ] && [ "$(readlink "$HOME/.bashenv")" = "$HOME/dotfiles/.env.rc" ]; then
+    echo "  ✅ Symlink already correct: $HOME/.bashenv → $HOME/dotfiles/.env.rc"
+else
+    rm "$HOME/.bashenv"
+    ln -s "$HOME/dotfiles/.env.rc" "$HOME/.bashenv" && echo "  ✅ Symlink created: $HOME/.bashenv → $HOME/dotfiles/.env.rc" || echo "❌ Failed to create symlink: $HOME/.bashenv"
+fi
 
 # powershell
 mkdir -p "$HOME/.config/powershell/"
-ln -s "$HOME/dotfiles/profile.ps1" "$HOME/.config/powershell/profile.ps1"
+if [ -L "$HOME/.config/powershell/profile.ps1" ] && [ "$(readlink "$HOME/.config/powershell/profile.ps1")" = "$HOME/dotfiles/profile.ps1" ]; then
+    echo "  ✅ Symlink already correct: $HOME/.config/powershell/profile.ps1 → $HOME/dotfiles/profile.ps1"
+else
+    ln -s "$HOME/dotfiles/profile.ps1" "$HOME/.config/powershell/profile.ps1" && echo "  ✅ Symlink created: $HOME/.config/powershell/profile.ps1 → $HOME/dotfiles/profile.ps1" || echo "❌ Failed to create symlink: $HOME/.config/powershell/profile.ps1"
+fi
+
+# Git user configuration
+echo -e "\n\e[38;5;45m»»» Configuring Git user info... \e[0m"
+echo "Enter your Git email:"
+read -r email
+git config --global user.email "$email"
+echo "Enter your Git name:"
+read -r name
+git config --global user.name "$name"
 
 #
 # Clone my setup scripts
