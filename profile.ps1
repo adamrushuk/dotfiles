@@ -112,7 +112,7 @@ function Get-GitLogCurrentBranch {
     $gitCommand = "git log --pretty=format:'- %s' '{0}..{1}'" -f $Branch, $currentBranch
     Write-Host "Executing command: $gitCommand" -ForegroundColor Yellow
     $output = Invoke-Expression $gitCommand
-    $output | Out-String | Set-Clipboard
+    ($output | Out-String).TrimEnd() | clip.exe
     $output
     Write-Host 'Commit messages copied to clipboard' -ForegroundColor Green
 }
@@ -159,7 +159,7 @@ function Get-GitLogFormattedCurrentBranch {
 
     # Reverse the output order and output to console and copy to clipboard
     $reversedOutput = $formattedOutput | Sort-Object { [array]::IndexOf($formattedOutput, $_) } -Descending
-    $reversedOutput | Out-String | Set-Clipboard
+    ($reversedOutput | Out-String).TrimEnd() | clip.exe
     $reversedOutput
     Write-Host 'Formatted commit messages copied to clipboard' -ForegroundColor Green
 }
