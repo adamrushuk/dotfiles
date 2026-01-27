@@ -1,0 +1,32 @@
+[credential]
+	# use windows credential manager
+	# https://docs.microsoft.com/en-us/windows/wsl/tutorials/wsl-git#git-credential-manager-setup
+	helper = /mnt/c/Program\\ Files//Git/mingw64/bin/git-credential-manager.exe
+
+	# use linux credential manager
+	# helper = /usr/local/share/gcm-core/git-credential-manager-core
+	# credentialStore = secretservice
+[credential "https://dev.azure.com"]
+	useHttpPath = true
+[push]
+	default = simple
+[pull]
+	rebase = false
+[core]
+	editor = code --wait
+[init]
+	defaultBranch = main
+# [http]
+# 	cookiefile = /home/adamr/.gitcookies
+[alias]
+	c = "!git add -A && git commit -m "
+	new = "!git checkout -b"
+	k = "!git checkout "
+	b = "!git branch "
+	p = "!git push"
+	#origin $(git rev-parse --abbrev-ref HEAD)"
+	pf = "!git push --force"
+	#origin $(git rev-parse --abbrev-ref HEAD)"
+	amend = "!git add -A && git commit --amend --no-edit"
+	undo = "!git reset --soft HEAD^"
+	unstage = "!git reset HEAD"
