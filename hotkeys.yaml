@@ -29,7 +29,7 @@ hotKeys:
 
   F6:
     shortCut: F6
-    command: crd
+    command: ingressroutetcp
 
   F7:
     shortCut: F7
