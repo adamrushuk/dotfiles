@@ -95,7 +95,7 @@ function Clear-DeletedBranches {
     git pull
 
     Write-Host "`nCurrent branches..." -ForegroundColor Green
-    git branch -a
+    git --no-pager branch -a
 }
 
 # Git log functions
