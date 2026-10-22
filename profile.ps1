@@ -34,6 +34,10 @@ https://github.com/PowerShell/PSReadLine/blob/master/PSReadLine/SamplePSReadLine
 # Show current settings
 Get-PSReadLineOption
 Get-PSReadLineKeyHandler
+
+# Clear auto-complete history, then Reload current session history
+Remove-Item (Get-PSReadLineOption).HistorySavePath
+[Microsoft.PowerShell.PSConsoleReadLine]::ClearHistory()
 #>
 
 # Enable history suggestions
