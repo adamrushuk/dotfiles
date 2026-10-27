@@ -36,8 +36,7 @@ Get-PSReadLineOption
 Get-PSReadLineKeyHandler
 
 # Clear auto-complete history, then Reload current session history
-Remove-Item (Get-PSReadLineOption).HistorySavePath
-[Microsoft.PowerShell.PSConsoleReadLine]::ClearHistory()
+Remove-Item (Get-PSReadLineOption).HistorySavePath && [Microsoft.PowerShell.PSConsoleReadLine]::ClearHistory()
 #>
 
 # Enable history suggestions
