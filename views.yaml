@@ -1,0 +1,25 @@
+# Custom Views
+# https://k9scli.io/topics/columns/
+# path: C:\Users\<USERNAME>\AppData\Local\k9s\views.yaml
+#
+# Add symbolic link:
+# New-Item -ItemType Directory -Force "$env:LOCALAPPDATA\k9s" > $null; New-Item -ItemType SymbolicLink -Path "$env:LOCALAPPDATA\k9s\views.yaml" -Target (Resolve-Path ".\views.yaml")
+views:
+  v1/services:
+    sortColumn: AGE:asc
+    columns:
+      - AGE
+      - NAMESPACE
+      - NAME
+      - TYPE
+      - CLUSTER-IP
+
+  events.k8s.io/v1/events:
+    sortColumn: "LAST SEEN:asc"
+    columns:
+      - LAST SEEN
+      - NAMESPACE
+      - OBJECT
+      - TYPE
+      - REASON
+      - MESSAGE

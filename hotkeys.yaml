@@ -2,6 +2,9 @@
 # https://k9scli.io/topics/hotkeys/
 # path: C:\Users\<USERNAME>\AppData\Local\k9s\hotkeys.yaml
 # note: casing has to be specific
+#
+# Add symbolic link:
+# New-Item -ItemType Directory -Force "$env:LOCALAPPDATA\k9s" > $null; New-Item -ItemType SymbolicLink -Path "$env:LOCALAPPDATA\k9s\hotkeys.yaml" -Target (Resolve-Path ".\hotkeys.yaml")
 hotKeys:
   shift-1:
     shortCut: Shift-1
