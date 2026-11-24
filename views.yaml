@@ -14,12 +14,20 @@ views:
       - TYPE
       - CLUSTER-IP
 
+  v1/nodes:
+    sortColumn: AGE:asc
+    columns:
+      - AGE
+      - NAME
+      - STATUS
+      - VERSION
+
   events.k8s.io/v1/events:
     sortColumn: "LAST SEEN:asc"
     columns:
       - LAST SEEN
       - NAMESPACE
-      - OBJECT
       - TYPE
       - REASON
       - MESSAGE
+      - OBJECT
